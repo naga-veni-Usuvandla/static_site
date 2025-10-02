@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vehicles — Booking Details</title>
+    <link rel="stylesheet" href="css/viewv.css" />
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <header class="site-header newheder">
+        <!-- Mobile Hamburger Menu -->
+        <button class="menu-toggle" aria-label="Open Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Logo -->
+        <div class="header-logo">
+            <a href="/"><img src="images/logo1.png" alt="Company Logo"></a>
+        </div>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="has-dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="#">Reservations</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Book a Car</a></li>
+                        <li><a href="#">View/Modify/Cancel</a></li>
+                        <li><a href="#">Online Check-In</a></li>
+                        <li><a href="#">Qualifications & Requirements</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Locations</a>
+                    <ul class="has-dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li><a href="#chennai">Chennai</a></li>
+                        <li><a href="#bangalore">Bangalore</a></li>
+                        <li><a href="#erode">Erode</a></li>
+                        <li><a href="#coimbatore">Coimbatore</a></li>
+                        <li><a href="#hyderabad">Hyderabad</a></li>
+                        <li><a href="#vijayawada">Vijayawada</a></li>
+                    </ul>
+                </li>
+                <li><a href="viewv.html">Vehicles</a>
+                    <ul class="has-dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li><a href="#bikes">Bikes</a></li>
+                        <li><a href="#cars">Cars</a></li>
+                        <li><a href="#bus">Bus</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+
+        <!-- Utility Actions -->
+        <div class="header-actions">
+            <div class="language-selector">
+                <i class="fas fa-globe"></i> EN/IN
+            </div>
+            <div class="auth-links">
+                <button id="loginLink" class="loginLink secondary-on-black">Login/Sign-Up</button>
+            </div>
+        </div>
+
+        <!-- Mobile Member Login Icon -->
+        <div class="header-login-mobile">
+            <a href="/login"><i class="fa-solid fa-user"></i> Member Login</a>
+        </div>
+    </header>
+
+
+    <main id="main" class="site-main" role="main" aria-labelledby="page-heading">
+        <section class="booking-details-container    booking-summary">
+            <h2>Booking Details</h2>
+            <div id="summary"></div>
+
+            <!-- Left Side: Journey Details -->
+            <aside class="journey-summary left-box">
+                <h2>Journey Details</h2>
+
+                <div class="journey-info">
+                    <div class="location pickup">
+                        <h3>Pick-up Location</h3>
+                        <p id="pickup-location-span">null</p>
+                    </div>
+
+                    <div class="arrow" aria-hidden="true">→</div>
+
+                    <div class="location dropoff">
+                        <h3>Drop-off Location</h3>
+                        <p id="dropoff-location-span">null</p>
+                    </div>
+                </div>
+
+                <dl class="journey-meta">
+                    <dt>Pick-up Date:</dt>
+                    <dd id="pickup-date-span">null</dd>
+
+                    <dt>Pick-up Time:</dt>
+                    <dd id="pickup-time-span">null</dd>
+
+                    <dt>Distance:</dt>
+                    <dd id="distance-span">null</dd>
+
+                    <dt>Estimated Time:</dt>
+                    <dd id="time-span">null</dd>
+
+                    <dt>Car:</dt>
+                    <dd id="car-span">null</dd>
+
+                    <dt>Price:</dt>
+                    <dd id="price-span">null</dd>
+                </dl>
+            </aside>
+
+            <!-- Right Side: Booking Form -->
+            <aside class="booking-form right-box" id="bookingForm">
+
+                <form id="detailsForm">
+                    <!-- Row 1: Name Fields -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="middleName">Middle Name</label>
+                            <input type="text" id="middleName" name="middleName" placeholder="Middle Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Contact Fields -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactNumber">Contact Number</label>
+                            <input type="tel" id="contactNumber" name="contactNumber" placeholder="Contact Number"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" placeholder="Age" required min="18">
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Address -->
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" placeholder="Address" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Pay Now Button -->
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <button type="submit" id="payNowBtn" class="primary-btn">Pay Now</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- <div id="successAlert" class="alert success">Payment successful! Your booking is confirmed.</div> -->
+                <div id="errorAlert " class="alert error">Payment not done. Please try again later</div>
+            </aside>
+
+        </section>
+
+    </main>
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h3>About Us</h3>
+                <p>We provide reliable vehicle rentals for all your travel needs. Quality service and comfort
+                    guaranteed.</p>
+            </div>
+
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Vehicles</a></li>
+                    <li><a href="#">Booking</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +91 9876543210</p>
+                <p>Address: Hyderabad, India</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vehicle Rentals. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+
+            document.getElementById("pickup-location-span").textContent = params.get("pickupLocation");
+            document.getElementById("pickup-date-span").textContent = params.get("pickupDate");
+            document.getElementById("pickup-time-span").textContent = params.get("pickupTime");
+            document.getElementById("dropoff-location-span").textContent = params.get("dropoffLocation") || "Same as pickup";
+            document.getElementById("car-span").textContent = params.get("vehicle");
+            document.getElementById("price-span").textContent = "Rs " + params.get("price");
+            document.getElementById("time-span").textContent = params.get("duration") + " hours";
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,418 @@
+.vehicles-section {
+    padding: 2rem;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+.vehicles-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.vehicle-option {
+    flex: 1 1 220px;
+    /* base width 220px, flex-grow and shrink */
+    max-width: 250px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.vehicle-option input:checked+label {
+    border: 2px solid #0078d7;
+    background: #eef6ff;
+}
+
+.vehicle-option label {
+    display: block;
+    padding: 1rem;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.vehicle-option label:hover {
+    background: #f1f1f1;
+}
+
+.vehicle-option img {
+    display: block;
+    margin: 0.5rem auto;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.vehicle-option h3 {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+
+.vehicle-option p {
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.vehicles-section button {
+    margin-top: 1.5rem;
+    padding: 10px 25px;
+    background: #fc0;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.vehicles-section button:hover {
+    background: #005bb5;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .vehicle-option {
+        flex: 1 1 100%;
+        /* full width cards on mobile */
+        max-width: 100%;
+    }
+
+    .vehicle-option img {
+        height: 120px;
+    }
+}
+
+.vehicle-option label {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.vehicle-option label.active {
+    border-color: #007bff;
+    background: #f0f8ff;
+}
+
+.vehicle-option {
+    display: inline-block;
+    width: 220px;
+    margin: 8px;
+    vertical-align: top;
+}
+
+.vehicle-option input[type="radio"] {
+    display: none;
+}
+
+.vehicle-option input[type="radio"]+label {
+    display: block;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.vehicle-option input[type="radio"]:checked+label {
+    border-color: #0077cc;
+    box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.08);
+}
+
+.card-est-price {
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+#selectedPrice {
+    margin-top: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+/* booking-details page */
+
+/* --- Container --- */
+.booking-details-container {
+    display: flex;
+    gap: 30px;
+    /* space between columns */
+    padding: 20px;
+    flex-wrap: wrap;
+    /* for mobile stacking */
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* --- Left Box (Journey Details) --- */
+.journey-summary {
+    flex: 1 1 350px;
+    /* grow, shrink, basis */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.journey-summary h2 {
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.journey-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.location {
+    flex: 1;
+}
+
+.location h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.location p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.arrow {
+    font-size: 1.5rem;
+    margin: 0 10px;
+}
+
+/* Journey Meta */
+.journey-meta dt {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.journey-meta dd {
+    margin: 0 0 10px 0;
+    color: #555;
+}
+
+/* --- Right Box (Form) --- */
+.booking-form {
+    flex: 1 1 350px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form h2 {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1 1 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    flex: 1 1 100%;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.form-group input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.primary-btn {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background-color: #005bb5;
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+    .booking-details-container {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .booking-details-container {
+        flex-direction: column;
+    }
+
+    .journey-summary,
+    .booking-form {
+        flex: 1 1 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+/* error message after clik on pay now;
+} */
+/* .alert {
+    margin: 15px 0;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: none;
+
+} */
+
+/* .alert.success {
+    background: #e6ffed;
+    border: 1px solid #2ecc71;
+    color: #27ae60;
+} */
+
+.alert.error {
+    background: #ffe6e6;
+    border: 1px solid #e74c3c;
+    color: #c0392b;
+}
+
+
+
+
+
+
+/* Modal backdrop */
+/* #vehiclesPage {
+    display: none;
+    padding: 2rem;
+    background: #f5f5f5;
+} */
+
+
+
+/* Modal wrapper */
+.modal-wrapper {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-wrapper.show {
+    display: flex;
+}
+
+/* Modal box */
+.modal-box {
+    background: #fff;
+    width: min(420px, 90%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    animation: fadeInUp .3s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header */
+.modal-box header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-box h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Form */
+.lookup-form {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.lookup-form input {
+    width: 100%;
+    padding: .6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Button */
+.btn {
+    padding: .7rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn.primary {
+    background: #0b74de;
+    color: #fff;
+    border: 1px solid #0b74de;
+}
+
+.btn.primary:disabled {
+    background: #bbb;
+    border-color: #bbb;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .modal-box {
+        width: 92%;
+        padding: 1rem;
+    }
+
+    .modal-box h2 {
+        font-size: 1rem;
+    }
+}

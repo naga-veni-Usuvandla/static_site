@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Static site</title>
+    <link rel="stylesheet" href="css/viewv.css" />
+</head>
+
+<body>
+    <header class="site-header newheder">
+        <!-- Mobile Hamburger Menu -->
+        <button class="menu-toggle" aria-label="Open Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Logo -->
+        <div class="header-logo">
+            <a href="/"><img src="images/logo1.png" alt="Company Logo"></a>
+        </div>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="has-dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="#">Reservations</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Book a Car</a></li>
+                        <li><a href="#">View/Modify/Cancel</a></li>
+                        <li><a href="#">Online Check-In</a></li>
+                        <li><a href="#">Qualifications & Requirements</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Locations</a>
+                    <ul class="has-dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li><a href="#chennai">Chennai</a></li>
+                        <li><a href="#bangalore">Bangalore</a></li>
+                        <li><a href="#erode">Erode</a></li>
+                        <li><a href="#coimbatore">Coimbatore</a></li>
+                        <li><a href="#hyderabad">Hyderabad</a></li>
+                        <li><a href="#vijayawada">Vijayawada</a></li>
+                    </ul>
+                </li>
+                <li><a href="viewv.html">Vehicles</a>
+                    <ul class="has-dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li><a href="#bikes">Bikes</a></li>
+                        <li><a href="#cars">Cars</a></li>
+                        <li><a href="#bus">Bus</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+
+        <!-- Utility Actions -->
+        <div class="header-actions">
+            <div class="language-selector">
+                <i class="fas fa-globe"></i> EN/IN
+            </div>
+            <div class="auth-links">
+                <button id="loginLink" class="loginLink secondary-on-black">Login/Sign-Up</button>
+            </div>
+        </div>
+
+        <!-- Mobile Member Login Icon -->
+        <div class="header-login-mobile">
+            <a href="/login"><i class="fa-solid fa-user"></i> Member Login</a>
+        </div>
+    </header>
+
+
+    <!-- Sidebar / Mobile Menu -->
+    <aside id="sideMenuParent" class="mobile-sidebar" aria-label="Mobile Navigation">
+        <nav class="mobile-nav">
+            <div class="mobile-nav-header">
+                <span>Menu</span>
+                <button class="close-menu" aria-label="Close Menu">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <ul class="nav-list">
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-calendar-days"></i> Start Your Reservation
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-car"></i> View / Modify / Cancel
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-globe"></i> Locations
+                    </a>
+                </li>
+                <li>
+                    <a href="#s">
+                        <i class="fa-solid fa-tags"></i> Special Offers
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-user"></i> Join / Gold Overview
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-globe"></i> EN/IN
+                    </a>
+                </li>
+
+                <!-- Submenu -->
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false">
+                        Reservations <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <ul class="submenu">
+                        <li><a href="#">Book a Car</a></li>
+                        <li><a href="#">View/Modify/Cancel</a></li>
+                        <li><a href="#">Online Check-In</a></li>
+                        <li><a href="#">Qualifications & Requirements</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#"> speacial offers</a></li>
+                <li><a href="#"> location</a></li>
+                <li><a href="#"> vehicales</a></li>
+                <li><a href="#"> products & services</a></li>
+                <li><a href="#"> Chauffeur Drive</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Overlay -->
+    <div class="menu-overlay"></div>
+    <main>
+        <section class="banner sticky">
+            <div class="booking-box">
+                <form id="bookingForm">
+                    <div class="form-row top-row">
+                        <div class="form-group">
+                            <label for="dropoffSelect" class="sr-only">Drop-off Location</label>
+                            <select id="dropoffSelect" name="dropoffSelect">
+                                <option value="same">Same Drop-off Location</option>
+                                <option value="different">Different Drop-off Location</option>
+                            </select>
+                        </div>
+                        <div class="form-group discount">
+                            <a href="#" id="openDiscount" class="discount-link">Add a Discount Code <span
+                                    class="info-icon">ℹ</span></a>
+                        </div>
+                        <div class="form-group edit-cancel">
+
+                            <a href="#" class=" edit-link new-viewEditCancel">View / Edit / Cancel</a>
+
+                        </div>
+                    </div>
+                    <div id="resLookupContainer">
+                        </di>
+                        <div class="form-row main-row">
+
+                            <div class="form-group">
+                                <label for="pickupLocation" class="sr-only">Pick-up Location</label>
+                                <input type="text" id="pickupLocation" name="pickupLocation"
+                                    placeholder="Pick-up Location" required />
+                            </div>
+
+
+                            <div class="form-group date-time">
+                                <label for="pickupDateDisplay">Pick-up Date</label>
+                                <input type="date" id="pickupDateDisplay" name="pickupDate" required />
+                            </div>
+
+                            <div class="form-group date-time">
+                                <label for="pickupTime">Pick-up Time</label>
+                                <select id="pickupTime" name="pickupTime" required></select>
+                            </div>
+
+                            <div class="form-group date-time">
+                                <label for="dropoffDateDisplay">Drop-off Date</label>
+                                <input type="date" id="dropoffDateDisplay" name="dropoffDate" required />
+                            </div>
+
+                            <div class="form-group date-time">
+                                <label for="dropoffTime">Drop-off Time</label>
+                                <select id="dropoffTime" name="dropoffTime" required></select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="view-btn">View Vehicles</button>
+                            </div>
+                        </div>
+
+
+
+                </form>
+
+            </div>
+            <!-- 🔽 Modal goes here (outside form) -->
+            <!-- <div class="modal-wrapper" id="lookupModal" aria-hidden="true">
+                <div class="modal-box">
+                    <header>
+                        <h2>Reservation Lookup</h2>
+                        <button type="button" id="closeLookup" class="close-btn">&times;</button>
+                    </header>
+                    <form id="lookupForm" class="lookup-form">
+                        <div class="form-group">
+
+                            <input type="text" id="conf-num" placeholder="Confirmation Number" name="confirmationNumber"
+                                required />
+                        </div>
+                        <div class="form-group">
+
+                            <input type="text" id="conf-last-name" placeholder="Last Name" name="lastName" required />
+                        </div>
+                        <button type="button" id="lookupVehiclesBtn" class="btn primary" disabled>
+                            View Vehicles
+                        </button>
+
+                    </form>
+                </div>
+            </div> -->
+
+        </section>
+        <!-- <section class="vehicles-section vehicles-page" id="vehiclesPage">
+            <h2>Select Your Vehicle</h2>
+            <form id="vehicleForm" action="booking-details.html" method="GET">
+                <div>
+                    <label>Pickup: <input id="pickupDate" name="pickupDate" type="datetime-local" required></label>
+                    <label style="margin-left:12px;">Drop-off: <input id="dropoffDate" name="dropoffDate"
+                            type="datetime-local" required></label>
+                </div>
+
+
+                <div style="margin-top:8px;">
+                    <label>Name: <input name="customerName" type="text"></label>
+                    <label style="margin-left:8px;">Phone: <input name="phone" type="tel"></label>
+                </div>
+                <div class="vehicles-flex">
+
+                    <div class="vehicle-option">
+                        <input type="radio" id="car1" name="vehicle" value="Hatchback Car" data-rate="200">
+                        <label for="car1">
+                            <h3>4 Seater: Sedan Car</h3>
+                            <img src="images/pic2.jpeg" alt="car">
+                            <p>Price: Rs 200/hour</p>
+                        </label>
+                        <p class="card-est-price">—</p>
+                    </div>
+
+                    <div class="vehicle-option">
+                        <input type="radio" id="bike1" name="vehicle" value="Royal Enfield" data-rate="150">
+                        <label for="bike1">
+                            <h3>2 Wheeler: Royal Enfield</h3>
+                            <img src="images/black.jpg" alt="bike">
+                            <p>Price: Rs 150/hour</p>
+                        </label>
+                        <p class="card-est-price">—</p>
+                    </div>
+
+                    <div class="vehicle-option">
+                        <input type="radio" id="carPremium" name="vehicle" value="Premium Car" data-rate="600" hidden>
+                        <label for="carPremium">
+                            <h3>Premium Cars</h3>
+                            <img src="images/download (1).jpg" alt="car">
+                            <p>Price: Rs 600/hour</p>
+                        </label>
+                        <p class="card-est-price">—</p>
+                    </div>
+
+                    <div class="vehicle-option">
+                        <input type="radio" id="scooty" name="vehicle" value="Scooty" data-rate="275" hidden>
+                        <label for="scooty">
+                            <h3>Two Wheeler (Without Gear)</h3>
+                            <img src="images/scooty.jpeg" alt="scooty">
+                            <p>Price: Rs 275/hour</p>
+                        </label>
+                        <p class="card-est-price">—</p>
+                    </div>
+
+                    <div class="vehicle-option">
+                        <input type="radio" id="bus20" name="vehicle" value="Mini Bus" data-rate="1000" hidden>
+                        <label for="bus20">
+                            <h3>Mini Bus (20 Seater)</h3>
+                            <img src="images/bus.jpeg" alt="bus">
+                            <p>Price: Rs 1000/hour</p>
+                        </label>
+                        <p class="card-est-price">—</p>
+                    </div>
+
+                    <div class="vehicle-option">
+                        <input type="radio" id="bike2" name="vehicle" value="2 Wheeler With Gear" data-rate="300"
+                            hidden>
+                        <label for="bike2">
+                            <h3>Two Wheeler (With Gear)</h3>
+                            <img src="images/bike1.jpeg" alt="bike">
+                            <p>Price: Rs 300/hour</p>
+                        </label>
+                        <p class="card-est-price">—</p>
+                    </div>
+
+                    <div class="vehicle-option">
+                        <input type="radio" id="sedan1" name="vehicle" value="Sedan Car" data-rate="700" hidden>
+                        <label for="sedan1">
+                            <h3>Hatchback Car</h3>
+                            <img src="images/pic1.avif" alt="car">
+                            <p>Price: Rs 700/hour</p>
+                        </label>
+                        <p class="card-est-price">—</p>
+                    </div>
+
+                </div>
+
+                <p id="priceOutput" style="font-weight: bold; margin-top: 15px;"></p>
+
+                <button type="submit">Book Selected Vehicle</button>
+            </form>
+
+        </section> -->
+
+        <section class="discounts">
+            <div class="container">
+                <h2 class="section-title">Special Discounts</h2>
+                <div class="discounts-flex">
+
+                    <div class="discount-card">
+                        <h3>10% Off</h3>
+                        <p>On your first rental.</p>
+                    </div>
+
+                    <div class="discount-card">
+                        <h3>20% Off</h3>
+                        <p>For long-term rentals.</p>
+                    </div>
+
+                    <div class="discount-card">
+                        <h3>15% Off</h3>
+                        <p>On weekend bookings.</p>
+                    </div>
+
+                    <div class="discount-card">
+                        <h3>Free GPS</h3>
+                        <p>With every rental over Rs 1200/-.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section class="contact-us">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="form-group">
+                    <label for="mobile">Mobile Number:</label>
+                    <div class="mobile-input">
+                        <span class="country-code">+91</span>
+                        <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <!-- Message -->
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" placeholder="Enter your message" rows="4" required></textarea>
+                </div>
+
+                <!-- Submit -->
+                <div class="form-group">
+                    <button type="submit" class="primary-btn">Send Message</button>
+                </div>
+            </form>
+        </section>
+
+
+    </main>
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h3>About Us</h3>
+                <p>We provide reliable vehicle rentals for all your travel needs. Quality service and comfort
+                    guaranteed.</p>
+            </div>
+
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Vehicles</a></li>
+                    <li><a href="#">Booking</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +91 9876543210</p>
+                <p>Address: Hyderabad, India</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vehicle Rentals. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
