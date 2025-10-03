@@ -78,14 +78,15 @@
 
     <main id="main" class="site-main" role="main" aria-labelledby="page-heading">
         <section class="booking-details-container    booking-summary">
-            <h2>Booking Details</h2>
+            <!-- <h2>Booking Details</h2> -->
             <div id="summary"></div>
+
 
             <!-- Left Side: Journey Details -->
             <aside class="journey-summary left-box">
                 <h2>Journey Details</h2>
 
-                <div class="journey-info">
+                <!-- <div class="journey-info">
                     <div class="location pickup">
                         <h3>Pick-up Location</h3>
                         <p id="pickup-location-span">null</p>
@@ -97,7 +98,7 @@
                         <h3>Drop-off Location</h3>
                         <p id="dropoff-location-span">null</p>
                     </div>
-                </div>
+                </div> -->
 
                 <dl class="journey-meta">
                     <dt>Pick-up Date:</dt>
@@ -106,8 +107,8 @@
                     <dt>Pick-up Time:</dt>
                     <dd id="pickup-time-span">null</dd>
 
-                    <dt>Distance:</dt>
-                    <dd id="distance-span">null</dd>
+                    <!-- <dt>Distance:</dt>
+                    <dd id="distance-span">null</dd> -->
 
                     <dt>Estimated Time:</dt>
                     <dd id="time-span">null</dd>
@@ -165,15 +166,20 @@
                         </div>
                     </div>
 
-                    <!-- Row 4: Pay Now Button -->
-                    <div class="form-row">
-                        <div class="form-group full-width">
-                            <button type="submit" id="payNowBtn" class="primary-btn">Pay Now</button>
-                        </div>
-                    </div>
+
+
                 </form>
-                <!-- <div id="successAlert" class="alert success">Payment successful! Your booking is confirmed.</div> -->
-                <div id="errorAlert " class="alert error">Payment not done. Please try again later</div>
+                <!-- Row 4: Pay Now Button -->
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <button type="button" id="payNowBtn" class="primary-btn">Pay Now</button>
+                    </div>
+                </div>
+
+                <div id="errorAlert" class="alert error  errorAlert">Payment not done. Please try again later</div>
+                <!-- <div id="errorAlert" class="alert error errorAlert">
+    Payment not done. Please try again later
+</div> -->
             </aside>
 
         </section>
@@ -211,17 +217,57 @@
     </footer>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const params = new URLSearchParams(window.location.search);
+            // Try to get booking from sessionStorage
+            const booking = JSON.parse(sessionStorage.getItem("finalBooking"));
 
-            document.getElementById("pickup-location-span").textContent = params.get("pickupLocation");
-            document.getElementById("pickup-date-span").textContent = params.get("pickupDate");
-            document.getElementById("pickup-time-span").textContent = params.get("pickupTime");
-            document.getElementById("dropoff-location-span").textContent = params.get("dropoffLocation") || "Same as pickup";
-            document.getElementById("car-span").textContent = params.get("vehicle");
-            document.getElementById("price-span").textContent = "Rs " + params.get("price");
-            document.getElementById("time-span").textContent = params.get("duration") + " hours";
+            // If finalBooking doesn't exist, try reading individual fields
+            const bookingData = booking || {
+                // pickupLocation: sessionStorage.getItem("pickupLocation"),
+                // dropoffLocation: sessionStorage.getItem("dropoffLocation"),
+                pickupDate: sessionStorage.getItem("pickupDate"),
+                pickupTime: sessionStorage.getItem("pickupTime"),
+                dropoffDate: sessionStorage.getItem("dropoffDate"),
+                dropoffTime: sessionStorage.getItem("dropoffTime"),
+                vehicle: sessionStorage.getItem("selectedCar"),
+                rate: sessionStorage.getItem("rate") || 0,
+                hours: sessionStorage.getItem("duration") || 0,
+                totalPrice: sessionStorage.getItem("totalPrice") || 0,
+                // distance: "N/A",
+                customerName: sessionStorage.getItem("customerName") || "N/A",
+                phone: sessionStorage.getItem("phone") || "N/A"
+            };
+
+            if (!bookingData) {
+                alert("No booking data found. Please go back and book a vehicle.");
+                return;
+            }
+
+            // Populate the Journey Details aside
+            // document.getElementById("pickup-location-span").textContent = bookingData.pickupLocation || "N/A";
+            // document.getElementById("dropoff-location-span").textContent = bookingData.dropoffLocation || "N/A";
+            document.getElementById("pickup-date-span").textContent = bookingData.pickupDate || "N/A";
+            document.getElementById("pickup-time-span").textContent = bookingData.pickupTime || "N/A";
+            // document.getElementById("distance-span").textContent = bookingData.distance || "N/A";
+            document.getElementById("time-span").textContent = bookingData.hours + " hours";
+            document.getElementById("car-span").textContent = `${bookingData.vehicle} (₹${bookingData.rate}/hr)`;
+            document.getElementById("price-span").textContent = `₹${bookingData.totalPrice}`;
+
+            // Populate the summary section
+            const summary = document.getElementById("summary");
+            if (summary) {
+                //         summary.innerHTML = `
+                //     <p><b>Name:</b> ${bookingData.customerName}</p>
+                //     <p><b>Phone:</b> ${bookingData.phone}</p>
+                //     <p><b>Pickup:</b> ${bookingData.pickupDate} ${bookingData.pickupTime}</p>
+                //     <p><b>Drop-off:</b> ${bookingData.dropoffDate} ${bookingData.dropoffTime}</p>
+                //     <p><b>Vehicle:</b> ${bookingData.vehicle} (₹${bookingData.rate}/hr)</p>
+                //     <p><b>Duration:</b> ${bookingData.hours} hours</p>
+                //     <p><b>Total Price:</b> ₹${bookingData.totalPrice}</p>
+                // `;
+            }
         });
     </script>
+
 
 </body>
 

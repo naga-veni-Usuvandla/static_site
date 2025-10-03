@@ -143,23 +143,32 @@
     <!-- Overlay -->
     <div class="menu-overlay"></div>
     <main>
+
         <section class="vehicles-section vehicles-page" id="vehiclesPage">
             <h2>Select Your Vehicle</h2>
             <form id="vehicleForm" action="booking-details.html" method="GET">
+
                 <div>
-                    <label>Pickup: <input id="pickupDate" name="pickupDate" type="datetime-local" required></label>
-                    <label style="margin-left:12px;">Drop-off: <input id="dropoffDate" name="dropoffDate"
-                            type="datetime-local" required></label>
+                    <label>Pickup:
+                        <input id="pickupDate" name="pickupDate" type="datetime-local" required>
+                    </label>
+                    <label style="margin-left:12px;">Drop-off:
+                        <input id="dropoffDate" name="dropoffDate" type="datetime-local" required>
+                    </label>
                 </div>
 
-                <!-- Optional passenger fields (will be included automatically in FormData) -->
                 <div style="margin-top:8px;">
-                    <label>Name: <input name="customerName" type="text"></label>
-                    <label style="margin-left:8px;">Phone: <input name="phone" type="tel"></label>
+                    <label>Name:
+                        <input id="customerName" name="customerName" type="text" required>
+                    </label>
+                    <label style="margin-left:8px;">Phone:
+                        <input id="phone" name="phone" type="tel" required>
+                    </label>
                 </div>
+
                 <div class="vehicles-flex">
 
-                    <div class="vehicle-option">
+                    <div class="vehicle-option" data-type="car">
                         <input type="radio" id="car1" name="vehicle" value="Hatchback Car" data-rate="200">
                         <label for="car1">
                             <h3>4 Seater: Sedan Car</h3>
@@ -172,7 +181,7 @@
                     <div class="vehicle-option">
                         <input type="radio" id="bike1" name="vehicle" value="Royal Enfield" data-rate="150">
                         <label for="bike1">
-                            <h3>2 Wheeler: Royal Enfield</h3>
+                            <h3>2 Wheeler</h3>
                             <img src="images/black.jpg" alt="bike">
                             <p>Price: Rs 150/hour</p>
                         </label>
@@ -180,7 +189,7 @@
                     </div>
 
                     <div class="vehicle-option">
-                        <input type="radio" id="carPremium" name="vehicle" value="Premium Car" data-rate="600" hidden>
+                        <input type="radio" id="carPremium" name="vehicle" value="Premium Car" data-rate="600">
                         <label for="carPremium">
                             <h3>Premium Cars</h3>
                             <img src="images/download (1).jpg" alt="car">
@@ -190,7 +199,7 @@
                     </div>
 
                     <div class="vehicle-option">
-                        <input type="radio" id="scooty" name="vehicle" value="Scooty" data-rate="275" hidden>
+                        <input type="radio" id="scooty" name="vehicle" value="Scooty" data-rate="275">
                         <label for="scooty">
                             <h3>Two Wheeler (Without Gear)</h3>
                             <img src="images/scooty.jpeg" alt="scooty">
@@ -200,7 +209,7 @@
                     </div>
 
                     <div class="vehicle-option">
-                        <input type="radio" id="bus20" name="vehicle" value="Mini Bus" data-rate="1000" hidden>
+                        <input type="radio" id="bus20" name="vehicle" value="Mini Bus" data-rate="1000">
                         <label for="bus20">
                             <h3>Mini Bus (20 Seater)</h3>
                             <img src="images/bus.jpeg" alt="bus">
@@ -210,8 +219,7 @@
                     </div>
 
                     <div class="vehicle-option">
-                        <input type="radio" id="bike2" name="vehicle" value="2 Wheeler With Gear" data-rate="300"
-                            hidden>
+                        <input type="radio" id="bike2" name="vehicle" value="2 Wheeler With Gear" data-rate="300">
                         <label for="bike2">
                             <h3>Two Wheeler (With Gear)</h3>
                             <img src="images/bike1.jpeg" alt="bike">
@@ -221,9 +229,9 @@
                     </div>
 
                     <div class="vehicle-option">
-                        <input type="radio" id="sedan1" name="vehicle" value="Sedan Car" data-rate="700" hidden>
+                        <input type="radio" id="sedan1" name="vehicle" value="Sedan Car" data-rate="700">
                         <label for="sedan1">
-                            <h3>Hatchback Car</h3>
+                            <h3>Sedan Car</h3>
                             <img src="images/pic1.avif" alt="car">
                             <p>Price: Rs 700/hour</p>
                         </label>
@@ -232,12 +240,9 @@
 
                 </div>
 
-                <!-- Final Price Display -->
                 <p id="priceOutput" style="font-weight: bold; margin-top: 15px;"></p>
-
                 <button type="submit">Book Selected Vehicle</button>
             </form>
-
         </section>
 
     </main>
@@ -272,7 +277,10 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js">
+
+    </script>
+
 </body>
 
 </html>

@@ -39,107 +39,75 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ============================
-    // Banner Section - Pickup & Dropoff with Calendar
+    // Banner Section - Pickup & Dropoff with Calendar and time
     // ============================
-    // JS - Place at the end of body or inside DOMContentLoaded
-    const pickupDate = document.getElementById("pickupDate");
-    const dropoffDate = document.getElementById("dropoffDate");
-    const pickupTimeSelect = document.getElementById("pickupTime");
-    const dropoffTimeSelect = document.getElementById("dropoffTime");
-    const editCancelLink = document.getElementById("editCancelLink");
 
-    if (!pickupDate || !dropoffDate || !pickupTimeSelect || !dropoffTimeSelect) return;
 
-    // Default today
-    const today = new Date();
-    const todayISO = today.toISOString().split("T")[0];
-    pickupDate.value = todayISO;
-    dropoffDate.value = todayISO;
-    pickupDate.min = todayISO;
-    dropoffDate.min = todayISO;
+    const pickupDate = document.getElementById("pickupDateDisplay");
+    const pickupTime = document.getElementById("pickupTime");
+    const dropoffDate = document.getElementById("dropoffDateDisplay");
+    const dropoffTime = document.getElementById("dropoffTime");
 
-    // Populate time dropdown
-    function populateTime(selectElement) {
-        selectElement.innerHTML = "";
-        for (let h = 0; h < 24; h++) {
-            for (let m = 0; m < 60; m += 30) {
-                const hh = String(h).padStart(2, "0");
-                const mm = String(m).padStart(2, "0");
-                const option = document.createElement("option");
-                option.value = `${hh}:${mm}`;
-                option.textContent = `${hh}:${mm}`;
-                selectElement.appendChild(option);
+    // ---------------------------
+    // Default today (only if date inputs exist)
+    // ---------------------------
+    if (pickupDate && pickupTime && dropoffDate && dropoffTime) {
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, "0");
+        const dd = String(now.getDate()).padStart(2, "0");
+        const hh = String(now.getHours()).padStart(2, "0");
+        const min = String(now.getMinutes()).padStart(2, "0");
+
+        // set default date
+        const today = `${yyyy}-${mm}-${dd}`;
+        pickupDate.value = today;
+        dropoffDate.value = today;
+
+        // populate time dropdowns in 30-min intervals
+        function fillTimes(select) {
+            select.innerHTML = "";
+            for (let h = 0; h < 24; h++) {
+                for (let m = 0; m < 60; m += 30) {
+                    const hour = String(h).padStart(2, "0");
+                    const minute = String(m).padStart(2, "0");
+                    const value = `${hour}:${minute}`;
+                    const option = new Option(value, value);
+                    select.add(option);
+                }
             }
         }
-    }
 
-    populateTime(pickupTimeSelect);
-    populateTime(dropoffTimeSelect);
+        fillTimes(pickupTime);
+        fillTimes(dropoffTime);
 
-    const roundedMinutes = today.getMinutes() < 30 ? "00" : "30";
-    const roundedHour = String(today.getHours()).padStart(2, "0");
-    pickupTimeSelect.value = `${roundedHour}:${roundedMinutes}`;
-    dropoffTimeSelect.value = `${roundedHour}:${roundedMinutes}`;
-
-    // Ensure drop-off >= pickup
-    pickupDate.addEventListener("change", () => {
-        if (dropoffDate.value < pickupDate.value) dropoffDate.value = pickupDate.value;
-        dropoffDate.min = pickupDate.value;
-    });
-
-    // Edit / Cancel toggle
-    if (editCancelLink) {
-        editCancelLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            const formSummary = document.getElementById("formSummary");
-            if (formSummary) {
-                formSummary.style.display =
-                    formSummary.style.display === "none" ? "block" : "none";
-            }
-            alert("View / Edit / Cancel clicked!");
-        });
+        // set default time to now
+        pickupTime.value = `${hh}:${min}`;
+        dropoffTime.value = `${hh}:${min}`;
     }
 
 
+    //after clicking the viewvehicles button redirect to cards vehicles page
+    document.getElementById("bookingForm")?.addEventListener("submit", function (e) {
+        e.preventDefault(); // prevent actual form submission
 
+        // Get all user input values
+        const bookingData = {
+            pickupLocation: document.getElementById("pickupLocation").value,
+            dropoffOption: document.getElementById("dropoffSelect").value,
+            pickupDate: document.getElementById("pickupDateDisplay").value,
+            pickupTime: document.getElementById("pickupTime").value,
+            dropoffDate: document.getElementById("dropoffDateDisplay").value,
+            dropoffTime: document.getElementById("dropoffTime").value
+        };
 
+        // Save to sessionStorage
+        sessionStorage.setItem("bannerBookingData", JSON.stringify(bookingData));
 
-    document.getElementById("bookingForm").addEventListener("submit", function (e) {
-        e.preventDefault(); // prevent real submit
-
-        // 👉 redirect user to vehicles cards page
+        // Redirect to vehicle cards page
         window.location.href = "vehicle.html";
+        console.log("Booking Data:", bookingData);
     });
-
-    //date and time in the banner form 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // ---------------------------
     // Booking Form + Vehicles + Price
@@ -148,91 +116,111 @@ document.addEventListener("DOMContentLoaded", () => {
     // Vehicle Booking & Price Calculation
     // ============================
 
-    // Grab elements safely
-    const vehiclesSection = document.querySelector(".vehicles-section");
-    const vehicleForm = document.getElementById("vehicleForm");
-    const bookingForm = document.getElementById("bookingForm");
+    // Grab inputs and elements
+    const form = document.getElementById("vehicleForm");
+    const pickupInput = document.getElementById("pickupDate");
+    const dropoffInput = document.getElementById("dropoffDate");
+    const customerNameInput = document.getElementById("customerName");
+    const phoneInput = document.getElementById("phone");
+    const vehicleOptions = document.querySelectorAll(".vehicle-option input[type='radio']");
+    const priceOutput = document.getElementById("priceOutput");
 
-    // Create price display element
-    const priceDisplay = document.createElement("p");
-    if (vehicleForm) vehicleForm.appendChild(priceDisplay);
+    // -----------------------------
+    // Set default datetime-local value
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
+    const hh = String(now.getHours()).padStart(2, "0");
+    const min = String(now.getMinutes()).padStart(2, "0");
 
-    // Object to store booking info
-    let bookingData = {};
 
-    // ---------------------------
-    // Step 1: Booking Form Submission (Pickup/Drop-off Info)
-    if (bookingForm) {
-        bookingForm.addEventListener("submit", (e) => {
-            e.preventDefault();
+    const defaultDateTime = `${yyyy}-${mm}-${dd}T${hh}:${min}`; // correct format
+    pickupInput.value = defaultDateTime;
+    dropoffInput.value = defaultDateTime;
+    pickupInput.min = defaultDateTime;
+    dropoffInput.min = defaultDateTime;
 
-            // Collect pickup/drop-off info safely
-            bookingData = {
-                pickupLocation: document.getElementById("pickupLocation")?.value || "",
-                dropoffLocation: document.getElementById("dropoffLocation")?.value || "",
-                pickupDate: document.getElementById("pickupDate")?.value || "",
-                pickupTime: document.getElementById("pickupTime")?.value || "",
-                dropoffDate: document.getElementById("dropoffDate")?.value || "",
-                dropoffTime: document.getElementById("dropoffTime")?.value || ""
-            };
+    // -----------------------------
+    // Calculate duration-based price
+    function calculatePrice(ratePerHour) {
+        const pickup = new Date(pickupInput.value);
+        const dropoff = new Date(dropoffInput.value);
+        if (!pickupInput.value || !dropoffInput.value || dropoff <= pickup) return null;
 
-            // Show vehicle selection section if available
-            if (vehiclesSection) vehiclesSection.classList.add("active");
-        });
+        const diffMs = dropoff - pickup;
+        const hours = Math.max(1, Math.ceil(diffMs / (1000 * 60 * 60))); // duration in hours
+        const totalPrice = hours * ratePerHour;
+        return { hours, totalPrice };
     }
 
-    // ---------------------------
-    // Step 2: Vehicle Selection & Price Calculation
-    if (vehicleForm) {
-        vehicleForm.addEventListener("change", (e) => {
-            if (e.target.name === "vehicle") {
+    // Update all cards and final price
+    function updatePrices() {
+        vehicleOptions.forEach(option => {
+            const rate = parseInt(option.dataset.rate, 10);
+            const parentCard = option.closest(".vehicle-option");
+            const priceDisplay = parentCard.querySelector(".card-est-price");
 
-                // Ensure booking info exists
-                if (!bookingData.pickupDate || !bookingData.dropoffDate) {
-                    console.warn("Pickup/Dropoff info missing.");
-                    return;
-                }
-
-                const rate = parseInt(e.target.dataset.rate, 10) || 0;
-                const start = new Date(`${bookingData.pickupDate} ${bookingData.pickupTime}`);
-                const end = new Date(`${bookingData.dropoffDate} ${bookingData.dropoffTime}`);
-                const hours = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60)));
-                const totalPrice = rate * hours;
-
-                // Save selected vehicle & price info
-                bookingData.vehicle = e.target.value;
-                bookingData.price = totalPrice;
-                bookingData.duration = hours;
-
-                // Update UI
-                priceDisplay.textContent = `✅ Total Price: Rs ${totalPrice} (${hours} hours)`;
-
-                // Store in sessionStorage for details page
-                sessionStorage.setItem("finalBooking", JSON.stringify(bookingData));
-            }
+            const result = calculatePrice(rate);
+            if (result) priceDisplay.textContent = `Est. ₹${result.totalPrice} (${result.hours} hrs)`;
+            else priceDisplay.textContent = "—";
         });
 
-        // ---------------------------
-        // Step 3: Vehicle Form Submission (Go to Booking Details)
-        vehicleForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            sessionStorage.setItem("bookingData", JSON.stringify(bookingData));
-            window.location.href = "booking-details.html";
-        });
+        const selected = document.querySelector(".vehicle-option input[type='radio']:checked");
+        if (selected) {
+            const rate = parseInt(selected.dataset.rate, 10);
+            const result = calculatePrice(rate);
+            if (result) priceOutput.textContent = `Final Price: ₹${result.totalPrice} for ${selected.value}`;
+            else priceOutput.textContent = "";
+        } else priceOutput.textContent = "";
     }
 
-    // ---------------------------
-    // Step 4: Booking Details Page Display
-    const finalBooking = JSON.parse(sessionStorage.getItem("finalBooking"));
-    const summaryEl = document.getElementById("summary");
-    if (finalBooking && summaryEl) {
-        summaryEl.innerHTML = `
-        <p><b>Pickup:</b> ${finalBooking.pickupDate} ${finalBooking.pickupTime} at ${finalBooking.pickupLocation}</p>
-        <p><b>Drop-off:</b> ${finalBooking.dropoffDate} ${finalBooking.dropoffTime} at ${finalBooking.dropoffLocation}</p>
-        <p><b>Vehicle:</b> ${finalBooking.vehicle}</p>
-        <p><b>Total Price:</b> Rs ${finalBooking.price}</p>
-    `;
-    }
+    // -----------------------------
+    // Event listeners
+    [pickupInput, dropoffInput].forEach(input => input.addEventListener("change", updatePrices));
+    vehicleOptions.forEach(option => option.addEventListener("change", updatePrices));
+
+    updatePrices(); // initial calculation on load
+
+    // -----------------------------
+    // Form submission
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (!customerNameInput.value) { alert("Enter name"); return; }
+        if (!/^\d{10}$/.test(phoneInput.value)) { alert("Phone must be 10 digits"); return; }
+
+        const selected = document.querySelector("input[name='vehicle']:checked");
+        if (!selected) { alert("Select a vehicle"); return; }
+
+        const result = calculatePrice(parseInt(selected.dataset.rate, 10));
+        if (!result) { alert("Invalid pickup/drop-off date or time"); return; }
+
+        // Build booking object
+        const bookingData = {
+            customerName: customerNameInput.value,
+            phone: phoneInput.value,
+            pickupDate: pickupInput.value.split("T")[0],  // yyyy-mm-dd
+            pickupTime: pickupInput.value.split("T")[1],  // hh:mm
+            dropoffDate: dropoffInput.value.split("T")[0],
+            dropoffTime: dropoffInput.value.split("T")[1],
+            vehicle: selected.value,
+            rate: parseInt(selected.dataset.rate, 10),
+            hours: result.hours,
+            totalPrice: result.totalPrice
+        };
+
+        // Store all booking info in sessionStorage
+        sessionStorage.setItem("finalBooking", JSON.stringify(bookingData));
+        sessionStorage.setItem("pickupDate", bookingData.pickupDate);
+        sessionStorage.setItem("pickupTime", bookingData.pickupTime);
+        sessionStorage.setItem("selectedCar", `${bookingData.vehicle} (₹${bookingData.rate}/hr)`);
+        sessionStorage.setItem("duration", bookingData.hours);
+        sessionStorage.setItem("totalPrice", bookingData.totalPrice);
+
+        window.location.href = "booking-details.html";
+    });
+
 
 
 
@@ -241,12 +229,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // ---------------------------
     const payNowBtn = document.getElementById("payNowBtn");
     const errorAlert = document.getElementById("errorAlert");
+
     if (payNowBtn && errorAlert) {
         payNowBtn.addEventListener("click", (e) => {
             e.preventDefault();
             errorAlert.style.display = "block";
-            setTimeout(() => errorAlert.style.display = "none", 3000);
+            setTimeout(() => {
+                errorAlert.style.display = "none";
+            }, 3000);
         });
     }
 
+
+
 });
+
+
+
+
+

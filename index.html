@@ -48,7 +48,7 @@
                         <li><a href="#vijayawada">Vijayawada</a></li>
                     </ul>
                 </li>
-                <li><a href="viewv.html">Vehicles</a>
+                <li><a href="vehicle.html">Vehicles</a>
                     <ul class="has-dropdown" aria-haspopup="true" aria-expanded="false">
                         <li><a href="#bikes">Bikes</a></li>
                         <li><a href="#cars">Cars</a></li>
@@ -150,6 +150,8 @@
                     <div class="form-row top-row">
                         <div class="form-group">
                             <label for="dropoffSelect" class="sr-only">Drop-off Location</label>
+                            <!-- <input type="text" id="dropoffLocation" name="dropoffLocation"
+                                placeholder="Drop-off Location" required /> -->
                             <select id="dropoffSelect" name="dropoffSelect">
                                 <option value="same">Same Drop-off Location</option>
                                 <option value="different">Different Drop-off Location</option>
@@ -171,6 +173,7 @@
 
                             <div class="form-group">
                                 <label for="pickupLocation" class="sr-only">Pick-up Location</label>
+
                                 <input type="text" id="pickupLocation" name="pickupLocation"
                                     placeholder="Pick-up Location" required />
                             </div>
@@ -200,134 +203,11 @@
                                 <button type="submit" class="view-btn">View Vehicles</button>
                             </div>
                         </div>
-
-
-
                 </form>
-
             </div>
-            <!-- 🔽 Modal goes here (outside form) -->
-            <!-- <div class="modal-wrapper" id="lookupModal" aria-hidden="true">
-                <div class="modal-box">
-                    <header>
-                        <h2>Reservation Lookup</h2>
-                        <button type="button" id="closeLookup" class="close-btn">&times;</button>
-                    </header>
-                    <form id="lookupForm" class="lookup-form">
-                        <div class="form-group">
-
-                            <input type="text" id="conf-num" placeholder="Confirmation Number" name="confirmationNumber"
-                                required />
-                        </div>
-                        <div class="form-group">
-
-                            <input type="text" id="conf-last-name" placeholder="Last Name" name="lastName" required />
-                        </div>
-                        <button type="button" id="lookupVehiclesBtn" class="btn primary" disabled>
-                            View Vehicles
-                        </button>
-
-                    </form>
-                </div>
-            </div> -->
-
         </section>
-        <!-- <section class="vehicles-section vehicles-page" id="vehiclesPage">
-            <h2>Select Your Vehicle</h2>
-            <form id="vehicleForm" action="booking-details.html" method="GET">
-                <div>
-                    <label>Pickup: <input id="pickupDate" name="pickupDate" type="datetime-local" required></label>
-                    <label style="margin-left:12px;">Drop-off: <input id="dropoffDate" name="dropoffDate"
-                            type="datetime-local" required></label>
-                </div>
 
-
-                <div style="margin-top:8px;">
-                    <label>Name: <input name="customerName" type="text"></label>
-                    <label style="margin-left:8px;">Phone: <input name="phone" type="tel"></label>
-                </div>
-                <div class="vehicles-flex">
-
-                    <div class="vehicle-option">
-                        <input type="radio" id="car1" name="vehicle" value="Hatchback Car" data-rate="200">
-                        <label for="car1">
-                            <h3>4 Seater: Sedan Car</h3>
-                            <img src="images/pic2.jpeg" alt="car">
-                            <p>Price: Rs 200/hour</p>
-                        </label>
-                        <p class="card-est-price">—</p>
-                    </div>
-
-                    <div class="vehicle-option">
-                        <input type="radio" id="bike1" name="vehicle" value="Royal Enfield" data-rate="150">
-                        <label for="bike1">
-                            <h3>2 Wheeler: Royal Enfield</h3>
-                            <img src="images/black.jpg" alt="bike">
-                            <p>Price: Rs 150/hour</p>
-                        </label>
-                        <p class="card-est-price">—</p>
-                    </div>
-
-                    <div class="vehicle-option">
-                        <input type="radio" id="carPremium" name="vehicle" value="Premium Car" data-rate="600" hidden>
-                        <label for="carPremium">
-                            <h3>Premium Cars</h3>
-                            <img src="images/download (1).jpg" alt="car">
-                            <p>Price: Rs 600/hour</p>
-                        </label>
-                        <p class="card-est-price">—</p>
-                    </div>
-
-                    <div class="vehicle-option">
-                        <input type="radio" id="scooty" name="vehicle" value="Scooty" data-rate="275" hidden>
-                        <label for="scooty">
-                            <h3>Two Wheeler (Without Gear)</h3>
-                            <img src="images/scooty.jpeg" alt="scooty">
-                            <p>Price: Rs 275/hour</p>
-                        </label>
-                        <p class="card-est-price">—</p>
-                    </div>
-
-                    <div class="vehicle-option">
-                        <input type="radio" id="bus20" name="vehicle" value="Mini Bus" data-rate="1000" hidden>
-                        <label for="bus20">
-                            <h3>Mini Bus (20 Seater)</h3>
-                            <img src="images/bus.jpeg" alt="bus">
-                            <p>Price: Rs 1000/hour</p>
-                        </label>
-                        <p class="card-est-price">—</p>
-                    </div>
-
-                    <div class="vehicle-option">
-                        <input type="radio" id="bike2" name="vehicle" value="2 Wheeler With Gear" data-rate="300"
-                            hidden>
-                        <label for="bike2">
-                            <h3>Two Wheeler (With Gear)</h3>
-                            <img src="images/bike1.jpeg" alt="bike">
-                            <p>Price: Rs 300/hour</p>
-                        </label>
-                        <p class="card-est-price">—</p>
-                    </div>
-
-                    <div class="vehicle-option">
-                        <input type="radio" id="sedan1" name="vehicle" value="Sedan Car" data-rate="700" hidden>
-                        <label for="sedan1">
-                            <h3>Hatchback Car</h3>
-                            <img src="images/pic1.avif" alt="car">
-                            <p>Price: Rs 700/hour</p>
-                        </label>
-                        <p class="card-est-price">—</p>
-                    </div>
-
-                </div>
-
-                <p id="priceOutput" style="font-weight: bold; margin-top: 15px;"></p>
-
-                <button type="submit">Book Selected Vehicle</button>
-            </form>
-
-        </section> -->
-
+        <!-- discount section -->
         <section class="discounts">
             <div class="container">
                 <h2 class="section-title">Special Discounts</h2>

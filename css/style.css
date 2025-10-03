@@ -4,13 +4,13 @@
     padding: 0;
 }
 
-
 body {
     line-height: 1.5;
     font-family: "Open Sans", Muli, Helvetica, Arial, sans-serif;
     overflow-x: hidden;
 }
 
+/* header css */
 .site-header {
     display: flex;
     justify-content: space-between;
@@ -21,6 +21,10 @@ body {
     position: relative;
     z-index: 1002;
     border-bottom: 4px solid #fc0;
+}
+
+.language-selector .fa-globe {
+    color: #fc0;
 }
 
 .header-logo {
@@ -459,7 +463,7 @@ nav.main-nav ul li a:hover {
     }
 
     .auth-links button {
-        background: #333;
+        background: linear-gradient(to right, #36d1dc, #5b86e5);
         color: #fff;
         border: none;
         padding: 8px 16px;
@@ -486,14 +490,11 @@ nav.main-nav ul li a:hover {
 
     width: 100%;
     height: auto;
-
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-
     background: linear-gradient(135deg, #d7d2cc, #304352);
-
     text-align: center;
     font-family: Arial, sans-serif;
 }
@@ -671,73 +672,6 @@ nav.main-nav ul li a:hover {
 
 .link:hover {
     color: #005bb5;
-}
-
-/* 🔹 Modal background overlay */
-.discount-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    /* hidden by default */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-/* 🔹 Modal container */
-.discount-modal {
-    background: #fff;
-    width: 100%;
-    max-width: 500px;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.3s ease;
-}
-
-/* 🔹 Modal header */
-.discount-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 15px;
-}
-
-.discount-modal-header h2 {
-    font-size: 18px;
-    margin: 0;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #666;
-}
-
-.close-btn:hover {
-    color: #000;
-}
-
-/* 🔹 Form fields */
-.discount-modal-form label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: 600;
-}
-
-.discount-modal-form input[type="text"] {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
 }
 
 /* 🔹 Buttons */
@@ -947,7 +881,7 @@ nav.main-nav ul li a:hover {
 }
 
 /* Fade-in animation */
-@keyframes fadeIn {
+/* @keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(-10px);
@@ -957,7 +891,7 @@ nav.main-nav ul li a:hover {
         opacity: 1;
         transform: translateY(0);
     }
-}
+} */
 
 /* Modal overlay */
 /* .lookup-modal {
@@ -1242,4 +1176,17 @@ nav.main-nav ul li a:hover {
     .footer-section {
         flex: 1 1 100%;
     }
+}
+
+
+.main-row input[type="text"],
+.main-row input[type="date"],
+.main-row select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
 }

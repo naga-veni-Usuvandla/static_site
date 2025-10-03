@@ -280,14 +280,16 @@
 
 /* error message after clik on pay now;
 } */
-/* .alert {
+#errorAlert {
     margin: 15px 0;
     padding: 12px;
     border-radius: 5px;
     font-weight: bold;
-    display: none;
-
-} */
+    display: none !important;
+    background: #ffe6e6;
+    border: 1px solid #e74c3c;
+    color: #c0392b;
+}
 
 /* .alert.success {
     background: #e6ffed;
@@ -295,11 +297,7 @@
     color: #27ae60;
 } */
 
-.alert.error {
-    background: #ffe6e6;
-    border: 1px solid #e74c3c;
-    color: #c0392b;
-}
+
 
 
 
